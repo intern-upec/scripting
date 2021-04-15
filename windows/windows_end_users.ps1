@@ -1,3 +1,11 @@
+
+$VF=(gcim Win32_Processor).VirtualizationFirmwareEnabled;
+If($VF -eq "False") 
+{ 
+    $wshell = New-Object -ComObject Wscript.Shell;
+    $Output = $wshell.Popup("Enable CPU virtualization support and try again ");
+    exit 1;
+};
 Set-ExecutionPolicy Bypass -Scope Process -Force; 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; 
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'));
@@ -12,4 +20,4 @@ echo Y | choco install --ignore-checksums --force puppet-agent;
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
 puppet.bat config set certname "firstname-lastname-i";
 puppet.bat config set server "puppetmaster.i";
-restart-computer
+restart-computer;
