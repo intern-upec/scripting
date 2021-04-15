@@ -27,7 +27,7 @@ then
         sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 		
 	fi
-    sudo yum install puppet-agent
+    sudo yum install 
 
 	
 fi
